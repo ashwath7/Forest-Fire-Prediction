@@ -1,0 +1,108 @@
+<html>
+<head>
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        /* Set the background image */
+        body {
+            background-image: url("https://images.pexels.com/photos/103123/pexels-photo-103123.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        /* Style the login container */
+        .login {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Style the form inputs */
+        .form-control {
+            margin-bottom: 10px;
+        }
+
+        /* Style the submit button */
+        .btn {
+            margin-top: 10px;
+        }
+
+        /* Style the result heading */
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        /* Add some animations */
+        .form-control, .btn {
+            /* Use the fade-in animation from Bootstrap 5 */
+            animation: fade-in 0.5s ease-in-out;
+        }
+
+        /* Define the fade-in animation */
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Add a shake animation when the form is invalid */
+        .was-validated .form-control:invalid, .was-validated .btn:invalid {
+            /* Use the shake animation from Bootstrap 5 */
+            animation: shake 0.5s linear;
+        }
+
+        /* Define the shake animation */
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-10px);
+            }
+            50% {
+                transform: translateX(10px);
+            }
+            75% {
+                transform: translateX(-10px);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login">
+       <h1>FWI Prediction</h1>
+   
+        <!-- Main Input For Receiving Query to our ML -->
+       <form action="{{ url_for('predict_datapoint')}}" method="post" class="was-validated">
+         <input type="text" name="Temperature" placeholder="Temperature" required="required" class="form-control" />
+         <input type="text" name="RH" placeholder="RH" required="required" class="form-control" />
+         <input type="text" name="Ws" placeholder="Ws" required="required" class="form-control" />
+         <input type="text" name="Rain" placeholder="Rain" required="required" class="form-control" />
+         <input type="text" name="FFMC" placeholder="FFMC" required="required" class="form-control" />
+         <input type="text" name="DMC" placeholder="DMC" required="required" class="form-control" />
+         <input type="text" name="ISI" placeholder="ISI" required="required" class="form-control" />
+         <input type="text" name="Classes" placeholder="Classes" required="required" class="form-control" />
+         <input type="text" name="Region" placeholder="Region" required="required" class="form-control" />
+   
+   
+   
+           <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+       </form>
+    <h2>
+       THE FWI prediction is {{results}}
+    </h2>
+   </div>
+</body>
+</html>
